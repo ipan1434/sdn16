@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD 16 Pontianak - Pendaftaran & Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #667eea 100%);
+            padding: 20px;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .school-logo {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .school-name {
+            color: #1e3c72;
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .school-tagline {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .facebook {
+            background: #1877F2;
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+        }
+
+        .tiktok {
+            background: #000000;
+            border: 2px solid #fff;
+        }
+
+        /* Main Container */
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 420px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card-header h2 {
+            color: white;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .card-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+
+        .form-container {
+            padding: 25px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .input-group input, 
+        .input-group select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+        }
+
+        .input-group input::placeholder {
+            color: #aaa;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-row .input-group {
+            flex: 1;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(30, 60, 114, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #2a5298;
+            color: #2a5298;
+        }
+
+        .btn-secondary:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        .btn-green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+
+        .btn-green:hover {
+            box-shadow: 0 5px 20px rgba(56, 239, 125, 0.4);
+        }
+
+        .message {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 15px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e1e1e1;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: #888;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .step {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #e1e1e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            color: #888;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: #2a5298;
+            color: white;
+        }
+
+        .step.completed {
+            background: #28a745;
+            color: white;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .back-link a {
+            color: #2a5298;
+            text-decoration: none;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .code-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .code-inputs input {
+            width: 45px;
+            height: 45px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .code-inputs input:focus {
+            border-color: #2a5298;
+            box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+            outline: none;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 12px;
+            color: #004085;
+        }
+
+        /* Success Card */
+        .success-content {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .success-content h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+
+        .success-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .school-name {
+                font-size: 24px;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .input-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="school-logo">🏫</div>
+        <h1 class="school-name">SD 16 Pontianak</h1>
+        <p class="school-tagline">Mitra Keluarga dalam Mencerdaskan Anak Bangsa</p>
+        
+        <!-- Social Media Links -->
+        <div class="social-links">
+            <a href="https://facebook.com/sd16pontianak" target="_blank" class="social-link facebook">
+                📘 Facebook
+            </a>
+            <a href="https://instagram.com/sd16pontianak" target="_blank" class="social-link instagram">
+                📸 Instagram
+            </a>
+            <a href="https://tiktok.com/@sd16pontianak" target="_blank" class="social-link tiktok">
+                🎵 TikTok
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Registration Card -->
+        <div class="card" id="registerCard">
+            <div class="card-header">
+                <h2>📝 Pendaftaran Siswa Baru</h2>
+                <p>Daftarkan anak Anda di SD 16 Pontianak</p>
+            </div>
+
+            <div class="form-container">
+                <!-- Steps -->
+                <div class="steps" id="regSteps">
+                    <div class="step active" id="regStep1">1</div>
+                    <div class="step" id="regStep2">2</div>
+                    <div class="step" id="regStep3">3</div>
+                </div>
+
+                <!-- Message -->
+                <div class="message" id="regMessage"></div>
+
+                <!-- Step 1: Data Siswa -->
+                <div id="regStep1Form">
+                    <div class="input-group">
+                        <label for="namaAnak">Nama Anak</label>
+                        <input type="text" id="namaAnak" placeholder="Nama lengkap anak" required>
+                    </div>
+                    
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="umur">Umur Anak</label>
+                            <input type="number" id="umur" placeholder="Umur" min="6" max="12" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="alamat">Alamat</label>
+                            <input type="text" id="alamat" placeholder="Alamat rumah" required>
+                        </div>
+                    </div>
+
+                    <button class="btn" id="nextStep1Btn" onclick="goToStep2()">
+                        Lanjut →
+                    </button>
+                </div>
+
+                <!-- Step 2: Data Orang Tua -->
+                <div id="regStep2Form" class="hidden">
+                    <div class="input-group">
+                        <label for="namaOrtu">Nama Orang Tua / Wali</label>
+                        <input type="text" id="namaOrtu" placeholder="Nama lengkap orang tua" required>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="noTelp">Nomor Telepon</label>
+                        <input type="tel" id="noTelp" placeholder="08xxxxxxxxxx" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="email@anda.com" required>
+                    </div>
+
+                    <button class="btn" id="nextStep2Btn" onclick="goToStep3()">
+                        Lanjut →
+                    </button>
+                    
+                    <div class="back-link">
+                        <a onclick="backToStep1()">← Kembali</a>
+                    </div>
+                </div>
+
+                <!-- Step 3: Password & Verifikasi -->
+                <div id="regStep3Form" class="hidden">
+                    <div class="info-box">
+                        📧 Kami akan mengirim kode verifikasi ke email Anda.
+                    </div>
+
+                    <div class="input-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Buat password" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmPassword">Konfirmasi Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Ulangi password" required>
+                    </div>
+
+                    <button class="btn" id="sendRegCodeBtn" onclick="sendRegistrationCode()">
+                        📧 Kirim Kode Verifikasi
+                    </button>
+
+                    <div class="back-link">
+                        <a onclick="backToStep2()">← Kembali</a>
+                    </div>
+                </div>
+
+                <!-- Step 4: Verifikasi Code -->
+                <div id="regStep4Form" class="hidden">
+                    <div class="info-box">
+                        📧 Masukkan kode verifikasi yang dikirim ke email Anda!
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regVerificationCode">Kode Verifikasi</label>
+                        <input type="text" id="regVerificationCode" placeholder="Masukkan 6 digit kode" maxlength="6" style="text-align: center; letter-spacing: 8px; font-size: 18px;">
+                    </div>
+
+                    <button class="btn btn-green" id="verifyRegBtn" onclick="verifyRegistrationCode()">
+                        ✅ Verifikasi & Daftar
+                    </button>
+
+                    <div class="back-link">
+                        <a onclick="backToStep3()">← Kembali</a>
+                    </div>
+                </div>
+
+                <!-- Success -->
+                <div id="regSuccessForm" class="hidden">
+                    <div class="success-content">
+                        <div class="success-icon">🎉</div>
+                        <h3>Pendaftaran Berhasil!</h3>
+                        <p>Selamat! Anak Anda telah terdaftar di SD 16 Pontianak. Silakan login untuk melihat data.</p>
+                        <button class="btn" onclick="showLogin()">🔐 Login Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Login Card -->
+        <div class="card" id="loginCard">
+            <div class="card-header">
+                <h2>🔐 Login</h2>
+                <p>Masuk ke akun Anda</p>
+            </div>
+
+            <div class="form-container">
+                <div class="message" id="loginMessage"></div>
+
+                <!-- Login Form -->
+                <div id="loginForm">
+                    <div class="input-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="email@anda.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Masukkan password" required>
+                    </div>
+
+                    <button class="btn btn-green" id="loginBtn" onclick="doLogin()">
+                        🔑 Login
+                    </button>
+
+                    <div class="divider">
+                        <span>ATAU</span>
+                    </div>
+
+                    <button class="btn btn-secondary" onclick="showRegister()">
+                        📝 Daftar Baru
+                    </button>
+                </div>
+
+                <!-- Login Success -->
+                <div id="loginSuccessForm" class="hidden">
+                    <div class="success-content">
+                        <div class="success-icon">👋</div>
+                        <h3>Selamat Datang!</h3>
+                        <p id="welcomeMessage">Login berhasil!</p>
+                        <button class="btn" onclick="doLogout()">🚪 Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 SD 16 Pontianak - Semua hak cipta dilindungi</p>
+    </div>
+
+    <script>
+        let tempRegistrationData = {};
+
+        // Show/Hide Functions
+        function showMessage(elementId, text, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = text;
+            el.className = 'message ' + type;
+        }
+
+        function hideMessage(elementId) {
+            document.getElementById(elementId).className = 'message';
+        }
+
+        function updateRegSteps(step) {
+            for (let i = 1; i <= 3; i++) {
+                const el = document.getElementById('regStep' + i);
+                if (i < step) {
+                    el.className = 'step completed';
+                } else if (i === step) {
+                    el.className = 'step active';
+                } else {
+                    el.className = 'step';
+                }
+            }
+        }
+
+        function showRegisterStep(step) {
+            document.getElementById('regStep1Form').classList.add('hidden');
+            document.getElementById('regStep2Form').classList.add('hidden');
+            document.getElementById('regStep3Form').classList.add('hidden');
+            document.getElementById('regStep4Form').classList.add('hidden');
+            document.getElementById('regSuccessForm').classList.add('hidden');
+            document.getElementById('regSteps').classList.remove('hidden');
+            
+            document.getElementById('regStep' + step + 'Form').classList.remove('hidden');
+            updateRegSteps(step);
+        }
+
+        // Registration Steps
+        function goToStep2() {
+            const namaAnak = document.getElementById('namaAnak').value.trim();
+            const umur = document.getElementById('umur').value.trim();
+            const alamat = document.getElementById('alamat').value.trim();
+
+            if (!namaAnak || !umur || !alamat) {
+                showMessage('regMessage', 'Mohon lengkapi data anak!', 'error');
+                return;
+            }
+
+            if (parseInt(umur) < 6 || parseInt(umur) > 12) {
+                showMessage('regMessage', 'Umur harus antara 6-12 tahun!', 'error');
+                return;
+            }
+
+            tempRegistrationData.namaAnak = namaAnak;
+            tempRegistrationData.umur = parseInt(umur);
+            tempRegistrationData.alamat = alamat;
+
+            hideMessage('regMessage');
+            showRegisterStep(2);
+        }
+
+        function goToStep3() {
+            const namaOrtu = document.getElementById('namaOrtu').value.trim();
+            const noTelp = document.getElementById('noTelp').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (!namaOrtu || !noTelp || !email) {
+                showMessage('regMessage', 'Mohon lengkapi data orang tua!', 'error');
+                return;
+            }
+
+            if (!email.includes('@')) {
+                showMessage('regMessage', 'Email tidak valid!', 'error');
+                return;
+            }
+
+            tempRegistrationData.namaOrtu = namaOrtu;
+            tempRegistrationData.noTelp = noTelp;
+            tempRegistrationData.email = email;
+
+            hideMessage('regMessage');
+            showRegisterStep(3);
+        }
+
+        function backToStep1() {
+            hideMessage('regMessage');
+            showRegisterStep(1);
+        }
+
+        function backToStep2() {
+            hideMessage('regMessage');
+            showRegisterStep(2);
+        }
+
+        function backToStep3() {
+            hideMessage('regMessage');
+            showRegisterStep(3);
+        }
+
+        // Send Verification Code
+        async function sendRegistrationCode() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const email = tempRegistrationData.email;
+
+            if (!password || !confirmPassword) {
+                showMessage('regMessage', 'Mohon masukkan password!', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('regMessage', 'Password tidak cocok!', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('regMessage', 'Password minimal 6 karakter!', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('sendRegCodeBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span>Mengirim...';
+            hideMessage('regMessage');
+
+            try {
+                const response = await fetch('/send-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    tempRegistrationData.password = password;
+                    showMessage('regMessage', data.message, 'success');
+                    document.getElementById('regSteps').classList.add('hidden');
+                    showRegisterStep(4);
+                } else {
+                    showMessage('regMessage', data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('regMessage', 'Gagal mengirim kode. Coba lagi!', 'error');
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '📧 Kirim Kode Verifikasi';
+            }
+        }
+
+        // Verify Code & Complete Registration
+        async function verifyRegistrationCode() {
+            const code = document.getElementById('regVerificationCode').value.trim();
+            const email = tempRegistrationData.email;
+
+            if (!code || code.length !== 6) {
+                showMessage('regMessage', 'Masukkan kode 6 digit!', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('verifyRegBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span>Memverifikasi...';
+            hideMessage('regMessage');
+
+            try {
+                // First verify the code
+                const verifyResponse = await fetch('/verify-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, code })
+                });
+
+                const verifyData = await verifyResponse.json();
+
+                if (!verifyData.success) {
+                    showMessage('regMessage', verifyData.message, 'error');
+                    btn.disabled = false;
+                    btn.innerHTML = '✅ Verifikasi & Daftar';
+                    return;
+                }
+
+                // If code verified, register the user
+                const regResponse = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(tempRegistrationData)
+                });
+
+                const regData = await regResponse.json();
+
+                if (regData.success) {
+                    document.getElementById('regStep4Form').classList.add('hidden');
+                    document.getElementById('regSteps').classList.add('hidden');
+                    document.getElementById('regSuccessForm').classList.remove('hidden');
+                } else {
+                    showMessage('regMessage', regData.message, 'error');
+                }
+            } catch (error) {
+                showMessage('regMessage', 'Terjadi kesalahan. Coba lagi!', 'error');
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '✅ Verifikasi & Daftar';
+            }
+        }
+
+        // Login Functions
+        async function doLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showMessage('loginMessage', 'Mohon masukkan email dan password!', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('loginBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="loading"></span>Login...';
+            hideMessage('loginMessage');
+
+            try {
+                const response = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('loginForm').classList.add('hidden');
+                    document.getElementById('loginSuccessForm').classList.remove('hidden');
+                    
+                    const namaAnak = data.data.nama_anak || 'Siswa';
+                    document.getElementById('welcomeMessage').textContent = `Selamat datang, ${namaAnak}!`;
+                } else {
+                    showMessage('loginMessage', data.message, 'error');
+                }
+            } catch (error) {
+                showMessage('loginMessage', 'Gagal login. Coba lagi!', 'error');
+                console.error(error);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '🔑 Login';
+            }
+        }
+
+        function doLogout() {
+            document.getElementById('loginSuccessForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            hideMessage('loginMessage');
+        }
+
+        function showRegister() {
+            document.getElementById('loginCard').style.display = 'none';
+            document.getElementById('registerCard').style.display = 'block';
+        }
+
+        function showLogin() {
+            resetRegistrationForm();
+            document.getElementById('registerCard').style.display = 'none';
+            document.getElementById('loginCard').style.display = 'block';
+        }
+
+        function resetRegistrationForm() {
+            document.getElementById('namaAnak').value = '';
+            document.getElementById('umur').value = '';
+            document.getElementById('alamat').value = '';
+            document.getElementById('namaOrtu').value = '';
+            document.getElementById('noTelp').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('confirmPassword').value = '';
+            document.getElementById('regVerificationCode').value = '';
+            tempRegistrationData = {};
+            showRegisterStep(1);
+            hideMessage('regMessage');
+        }
+
+        // Allow Enter key to submit
+        document.getElementById('loginEmail').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') doLogin();
+        });
+
+        document.getElementById('regVerificationCode').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    </script>
+</body>
+</html>

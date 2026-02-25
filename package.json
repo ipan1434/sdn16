@@ -1,0 +1,14 @@
+{
+  "name": "sd-16-pontianak",
+  "version": "1.0.0",
+  "description": "Website SD 16 Pontianak - Pendaftaran & Login Siswa",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemailer": "^6.9.7",
+    "mysql2": "^3.6.5"
+  }
+}
